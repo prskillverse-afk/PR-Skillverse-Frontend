@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
-
+import API_URL from "./utils/api";
 import VideoPlayer from "../components/VideoPlayer";
 import "./VideoPage.css";
 

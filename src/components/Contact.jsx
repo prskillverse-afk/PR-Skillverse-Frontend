@@ -1,5 +1,6 @@
 import "../styles/Contact.css";
 import "animate.css";
+import API_URL from "../utils/api";
 function Contact() {
   const sendWhatsAppMessage = (e) => {
     e.preventDefault();

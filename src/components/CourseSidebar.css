@@ -1,0 +1,21 @@
+.sidebar {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.lesson {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.lesson:hover {
+  background: #eef2ff;
+}
+
+.lesson.active {
+  background: #2563eb;
+  color: white;
+}

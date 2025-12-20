@@ -1,0 +1,190 @@
+/* ================= TESTIMONIALS SECTION ================= */
+
+.testimonials {
+  padding: 6rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80")
+    center / cover fixed;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+/* HEADER */
+.section-header {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section-badge {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.5rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* GRID */
+.testimonials-grid {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* CARD */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* IMAGE */
+.student-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #2563eb;
+  margin-bottom: 1rem;
+}
+
+.student-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* QUOTE ICON */
+.quote-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 3rem;
+  color: #2563eb;
+  opacity: 0.2;
+}
+
+/* CONTENT */
+.testimonial-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* STUDENT INFO */
+.student-info h4 {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.student-info p {
+  color: #60a5fa;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.rating {
+  color: #facc15;
+  letter-spacing: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 4rem 1rem;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+
+/* ===== HORIZONTAL CARD SCROLL (ONLY CARDS MOVE) ===== */
+
+.testimonial-scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* override grid ONLY for scrolling */
+.testimonials-scroll-track {
+  display: flex !important;
+  gap: 2rem;
+  width: max-content;
+  animation: testimonialCarousel 35s linear infinite;
+}
+
+/* pause on hover */
+.testimonial-scroll-wrapper:hover .testimonials-scroll-track {
+  animation-play-state: paused;
+}
+
+/* prevent shrinking */
+.testimonial-card {
+  min-width: 360px;
+  flex-shrink: 0;
+}
+
+/* animation */
+@keyframes testimonialCarousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .testimonial-card {
+    min-width: 280px;
+  }
+}

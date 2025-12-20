@@ -1,0 +1,339 @@
+/* ================= ADMIN LAYOUT ================= */
+.admin-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+
+  height: 100vh;
+  padding: 160px 24px 24px;   /* 🔥 INCREASED TOP SPACE */
+  background: #f8fafc;
+}
+
+/* ================= COURSE SELECTOR (BIG & CENTER) ================= */
+.course-selector {
+  position: fixed;
+  top: 18px;                 /* slight breathing space */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  padding: 18px 28px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* BIG SELECT */
+.course-selector select {
+  width: 380px;              /* wide */
+  height: 60px;              /* tall */
+
+  padding: 0 22px;
+  border-radius: 14px;
+  border: 2px solid #c7d2fe;
+
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.course-selector select:hover {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15);
+}
+
+/* FOCUS */
+.course-selector select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25);
+}
+
+/* ================= COMMON PANEL ================= */
+.admin-modules,
+.admin-videos,
+.admin-upload {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px;
+
+  height: calc(100vh - 210px); /* 🔥 MORE GAP FROM SELECT */
+  overflow-y: auto;
+
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= MODULES ================= */
+.admin-module-card {
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+
+  background: #f9fafb;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.admin-module-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.admin-module-card.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* ================= VIDEOS ================= */
+.admin-video-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #f1f5f9;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.admin-video-row:hover {
+  background: #e0e7ff;
+}
+
+.admin-video-row button {
+  background: #ef4444;
+  color: white;
+
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================= UPLOAD ================= */
+.admin-upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.admin-upload input,
+.admin-upload select {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 18px;
+  margin-bottom: 16px;
+
+  border-radius: 10px;
+  border: 2px solid #c7d2fe;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-upload input:focus,
+.admin-upload select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+/* UPLOAD BUTTON */
+.admin-upload button {
+  height: 54px;
+
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.admin-upload button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+    padding-top: 180px;
+  }
+
+  .course-selector select {
+    width: 320px;
+  }
+
+  .admin-modules,
+  .admin-videos,
+  .admin-upload {
+    height: auto;
+  }
+}
+
+
+.live-toggle {
+  margin-left: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #22c55e;
+  color: white;
+}
+
+.live-toggle.on {
+  background: #ef4444;
+}
+
+
+
+/* ================= LIVE SCHEDULE ZONE ================= */
+
+.admin-live-zone {
+  grid-column: 1 / -1;              /* full width */
+  margin: 30px 20px 40px;
+  padding: 22px 26px;
+
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border-radius: 16px;
+
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+}
+
+.admin-live-zone h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ================= INPUTS ================= */
+
+.admin-live-zone input {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 16px;
+  margin-bottom: 14px;
+
+  border-radius: 10px;
+  border: 1px solid #334155;
+
+  background: #020617;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+}
+
+.admin-live-zone input::placeholder {
+  color: #94a3b8;
+}
+
+.admin-live-zone input:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+}
+
+/* ================= BUTTONS ================= */
+
+.admin-live-zone button {
+  width: 100%;
+  height: 48px;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+/* START LIVE */
+.admin-live-zone .start-live {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #022c22;
+}
+
+.admin-live-zone .start-live:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(34, 197, 94, 0.45);
+}
+
+/* END LIVE */
+.admin-live-zone .end-live {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+}
+
+.admin-live-zone .end-live:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(239, 68, 68, 0.45);
+}
+
+/* ================= STATUS TAG ================= */
+
+.admin-live-status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.admin-live-status.on {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.admin-live-status.off {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .admin-live-zone {
+    margin: 24px 14px;
+    padding: 20px;
+  }
+
+  .admin-live-zone h3 {
+    font-size: 16px;
+  }
+}

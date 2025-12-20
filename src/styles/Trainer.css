@@ -1,0 +1,182 @@
+/* ================= TRAINER SECTION ================= */
+
+.trainer-profile {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.7));
+  position: relative;
+  overflow: hidden;
+}
+
+.trainer-profile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80")
+    center / cover fixed;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+/* CARD */
+.trainer-card {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+}
+
+/* IMAGE */
+.trainer-image {
+  flex: 0 0 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.trainer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.trainer-card:hover .trainer-image img {
+  transform: scale(1.08);
+}
+
+/* INFO */
+.trainer-info {
+  flex: 1;
+  padding: 2.5rem;
+  color: #fff;
+}
+
+.trainer-info h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.trainer-designation {
+  color: #22c55e;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+/* STATS */
+.trainer-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 2.2rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat .number {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.stat .label {
+  display: block;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+/* EXPERTISE */
+.trainer-expertise h4,
+.trainer-certifications h4 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.expertise-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.expertise-tags span {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.expertise-tags span:hover {
+  background: #22c55e;
+  color: #0f172a;
+  transform: translateY(-2px);
+}
+
+/* CERTIFICATIONS */
+.trainer-certifications ul {
+  list-style: none;
+  padding: 0;
+}
+
+.trainer-certifications li {
+  margin-bottom: 0.6rem;
+  color: #e5e7eb;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.trainer-certifications li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: 700;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .trainer-card {
+    flex-direction: column;
+  }
+
+  .trainer-image {
+    height: 320px;
+    width: 100%;
+  }
+
+  .trainer-info {
+    padding: 2rem;
+  }
+
+  .trainer-stats {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .stat {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .trainer-info h3 {
+    font-size: 1.8rem;
+  }
+
+  .trainer-designation {
+    font-size: 1rem;
+  }
+}

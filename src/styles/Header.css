@@ -1,0 +1,177 @@
+/* HEADER BASE */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* NAV CONTAINER */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ================= LOGO ================= */
+
+.logo-main {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  cursor: pointer;
+}
+
+/* LOGO IMAGE */
+.logo-main img {
+  height: 90px;
+  width: 90px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* LOGO TEXT CONTAINER */
+.logo-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* MAIN LOGO TEXT */
+.logo-text {
+  color: #2563eb;
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* TAGLINE */
+.logo-tagline {
+  font-size: 1.15rem;
+  font-style: oblique;
+  color: #1f2937;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* LOGO GLOW HOVER */
+.logo-main:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.7));
+}
+
+.logo-main:hover .logo-text {
+  text-shadow: 0 0 14px rgba(37, 99, 235, 0.9);
+  transform: translateY(-1px);
+}
+
+/* ================= NAVIGATION ================= */
+
+.nav-menu {
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* NAV GLOW */
+.nav-link:hover {
+  color: #2563eb;
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+}
+
+/* ================= HAMBURGER ================= */
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 24px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #1f2937;
+  margin: 6px 0;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER GLOW */
+.hamburger:hover span {
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.7);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo-main img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .logo-text {
+    font-size: 2rem;
+  }
+
+  .logo-tagline {
+    font-size: 0.9rem;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    transition: right 0.3s ease;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .nav-link {
+    font-size: 2.6rem;
+    padding: 1rem;
+  }
+}

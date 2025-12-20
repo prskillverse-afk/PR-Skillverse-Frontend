@@ -1,0 +1,154 @@
+/* ================= BLOG & MEDIA ================= */
+
+.blog-media {
+  position: relative;
+  padding: 6rem 2rem;
+  background: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80")
+    center / cover no-repeat;
+  overflow: hidden;
+}
+
+.blog-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.blog-container {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  z-index: 2;
+  color: #fff;
+}
+
+/* Header */
+.blog-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.blog-badge {
+  display: inline-block;
+  background: #2563eb;
+  padding: 0.4rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.blog-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.blog-subtitle {
+  max-width: 700px;
+  margin: auto;
+  color: #cbd5f5;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.blog-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1.2rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 1.8rem;
+}
+
+.blog-category {
+  color: #60a5fa;
+  font-size: 0.9rem;
+}
+
+.blog-content h3 {
+  margin: 0.6rem 0;
+}
+
+.blog-content p {
+  color: #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* Media Box */
+.media-box {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 1.5rem;
+  padding: 3rem;
+}
+
+.media-icon {
+  font-size: 4rem;
+  color: red;
+}
+
+.media-content h3 {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+.media-content p {
+  margin-bottom: 1rem;
+  color: #e5e7eb;
+}
+
+.media-content ul {
+  margin-bottom: 1.5rem;
+}
+
+.media-content li {
+  list-style: none;
+  margin-bottom: 0.4rem;
+}
+
+.media-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: red;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .media-box {
+    flex-direction: column;
+    text-align: center;
+  }
+}

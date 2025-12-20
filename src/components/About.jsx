@@ -1,5 +1,5 @@
 import "../styles/About.css";
-import "animate.css";
+import "animate.css/animate.min.css";
 
 function About() {
   return (

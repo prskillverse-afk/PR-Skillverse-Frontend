@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/Header.css";
-import "animate.css";
+import "animate.css/animate.min.css";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

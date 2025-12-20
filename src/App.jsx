@@ -22,17 +22,13 @@ import ProtectedRoute from "./components/ProtectedRoute";
 /* ================= ADMIN ================= */
 import AdminRoute from "./components/AdminRoute";
 import AdminUpload from "./admin/AdminUpload";
-import AdminLogin from "./admin/AdminLogin";
-
-
-
+import AdminLogin from "./pages/AdminLogin";
 
 /* ================= LAYOUT ================= */
-
 function AppLayout() {
   const location = useLocation();
 
-  /* Hide header on auth & admin pages */
+  /* Hide header on auth, dashboard & admin pages */
   const hideHeader =
     location.pathname === "/login" ||
     location.pathname.startsWith("/recordings") ||
@@ -43,7 +39,7 @@ function AppLayout() {
       {!hideHeader && <Header />}
 
       <Routes>
-        {/* ========= PUBLIC WEBSITE ========= */}
+        {/* ================= PUBLIC WEBSITE ================= */}
         <Route
           path="/"
           element={
@@ -61,11 +57,11 @@ function AppLayout() {
             </>
           }
         />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        {/* ========= STUDENT AUTH ========= */}
+
+        {/* ================= STUDENT AUTH ================= */}
         <Route path="/login" element={<Login />} />
 
-        {/* ========= STUDENT DASHBOARD ========= */}
+        {/* ================= STUDENT DASHBOARD ================= */}
         <Route
           path="/recordings"
           element={
@@ -84,7 +80,10 @@ function AppLayout() {
           }
         />
 
-        {/* ========= ADMIN DASHBOARD ========= */}
+        {/* ================= ADMIN LOGIN ================= */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* ================= ADMIN DASHBOARD ================= */}
         <Route
           path="/admin"
           element={
@@ -99,7 +98,6 @@ function AppLayout() {
 }
 
 /* ================= ROOT ================= */
-
 export default function App() {
   return (
     <BrowserRouter>

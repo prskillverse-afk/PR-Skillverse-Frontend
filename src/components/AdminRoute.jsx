@@ -8,9 +8,9 @@ export default function AdminRoute({ children }) {
     return <p style={{ textAlign: "center" }}>Checking admin access...</p>;
   }
 
-  // ❌ Not admin → go to ADMIN login (not student login)
+  // Not admin → redirect to ADMIN login
   if (!isAdmin) {
-    return <Navigate to="/admin-login" replace />;
+    return <Navigate to="/admin/login" replace />;
   }
 
   return children;

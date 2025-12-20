@@ -14,51 +14,60 @@ export default function CoursesPage() {
     zoomLink: "",
   });
 
-  /* 🔴 FETCH LIVE STATUS */
+  /* 🔴 FETCH LIVE STATUS FROM FIRESTORE */
   useEffect(() => {
     const unsub = onSnapshot(
       doc(db, "liveClasses", "status"),
       (snap) => {
-        if (snap.exists()) setLiveInfo(snap.data());
-        else setLiveInfo({ isLive: false });
+        if (snap.exists()) {
+          setLiveInfo(snap.data());
+        } else {
+          setLiveInfo({ isLive: false });
+        }
       }
     );
+
     return () => unsub();
   }, []);
 
+  /* COURSES DATA WITH IMAGES */
   const courses = [
     {
       id: "sap-s4hana-finance",
       title: "SAP S/4HANA Finance",
       modules: "24 Modules",
       duration: "120+ Hours",
+      image:
+        "https://res.cloudinary.com/dvknx0hpm/image/upload/v1766226307/ChatGPT_Image_Dec_20_2025_03_54_38_PM_tf3rvf.png",
     },
     {
       id: "sap-fico-workshop",
       title: "SAP FICO Workshop",
       modules: "10 Modules",
       duration: "40+ Hours",
+      image:
+        "https://res.cloudinary.com/dvknx0hpm/image/upload/v1766226448/ChatGPT_Image_Dec_20_2025_03_57_00_PM_flaqqo.png",
     },
   ];
 
-  const filtered = courses.filter((c) =>
-    c.title.toLowerCase().includes(search.toLowerCase())
+  /* SEARCH FILTER */
+  const filteredCourses = courses.filter((course) =>
+    course.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="courses-page">
-      {/* 🔴 LIVE SCHEDULE HERO */}
+      {/* 🔴 LIVE CLASS HERO */}
       <div className="courses-hero">
-        <div>
+        <div className="hero-text">
           <h2>
             {liveInfo.isLive
               ? "🔴 Live Schedule is Available Now"
               : "📌 Live Schedule Not Available"}
           </h2>
-
           <p>
             {liveInfo.isLive
-              ? "Click below to view the live class schedule"
+              ? "Click below to view today's live SAP class schedule"
               : "Please continue with recorded classes"}
           </p>
         </div>
@@ -73,25 +82,36 @@ export default function CoursesPage() {
         )}
       </div>
 
-      {/* SEARCH */}
+      {/* 🔍 SEARCH */}
       <div className="courses-search">
         <input
-          placeholder="Search course"
+          type="text"
+          placeholder="Search course..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
-      {/* COURSES */}
+      {/* 📚 COURSES GRID */}
       <div className="courses-grid">
-        {filtered.map((course) => (
+        {filteredCourses.map((course) => (
           <div className="course-card" key={course.id}>
-            <h3>{course.title}</h3>
-            <p>{course.modules} • {course.duration}</p>
+            <div className="course-image">
+              <img src={course.image} alt={course.title} />
+            </div>
 
-            <button onClick={() => navigate(`/recordings/${course.id}`)}>
-              Get Started →
-            </button>
+            <div className="course-body">
+              <h3>{course.title}</h3>
+              <p>
+                {course.modules} • {course.duration}
+              </p>
+
+              <button
+                onClick={() => navigate(`/recordings/${course.id}`)}
+              >
+                Get Started →
+              </button>
+            </div>
           </div>
         ))}
       </div>

@@ -131,3 +131,43 @@
     gap: 16px;
   }
 }
+
+
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+}
+
+.play-btn {
+  font-size: 20px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #ef4444;
+  color: #fff;
+}
+
+.yt-fallback {
+  margin-top: 10px;
+}

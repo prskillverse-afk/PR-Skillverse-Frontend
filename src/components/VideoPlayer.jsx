@@ -5,12 +5,15 @@ import "./VideoPlayer.css";
 export default function VideoPlayer({ video }) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("overview");
+  const [play, setPlay] = useState(false); // ✅ NEW
 
+  /* VALIDATE EMBED URL */
   const embedUrl = useMemo(() => {
     if (!video?.videoUrl) return null;
-    return video.videoUrl.includes("youtube.com/embed/")
-      ? video.videoUrl
-      : null;
+    if (video.videoUrl.includes("youtube.com/embed/")) {
+      return video.videoUrl;
+    }
+    return null;
   }, [video]);
 
   /* NO VIDEO */
@@ -18,7 +21,7 @@ export default function VideoPlayer({ video }) {
     return <div className="video-placeholder">▶ Select a lesson</div>;
   }
 
-  /* INVALID URL (DATABASE ISSUE) */
+  /* INVALID URL */
   if (!embedUrl) {
     return (
       <div className="video-error">
@@ -34,18 +37,28 @@ export default function VideoPlayer({ video }) {
         ← Back
       </button>
 
+      {/* VIDEO AREA */}
       <div className="video-wrapper">
-        <iframe
-          src={`${embedUrl}?rel=0&modestbranding=1`}
-          title={video.title}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        {!play ? (
+          <div className="video-overlay">
+            <button className="play-btn" onClick={() => setPlay(true)}>
+              ▶ Click to Play
+            </button>
+          </div>
+        ) : (
+          <iframe
+            src={`${embedUrl}?rel=0&modestbranding=1`}
+            title={video.title}
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
       </div>
 
       <h2>{video.title}</h2>
       <p>👨‍🏫 {video.trainer || "Trainer"}</p>
 
+      {/* TABS */}
       <div className="lesson-tabs">
         <button
           className={activeTab === "overview" ? "active" : ""}
@@ -74,6 +87,17 @@ export default function VideoPlayer({ video }) {
         {activeTab !== "overview" && (
           <p className="muted">Coming soon…</p>
         )}
+      </div>
+
+      {/* FALLBACK */}
+      <div className="yt-fallback">
+        <a
+          href={embedUrl.replace("/embed/", "/watch?v=")}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in YouTube
+        </a>
       </div>
     </div>
   );

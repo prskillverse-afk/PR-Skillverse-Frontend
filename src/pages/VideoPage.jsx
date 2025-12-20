@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
-import API_URL from "../utils/api";
+
 import VideoPlayer from "../components/VideoPlayer";
 import "./VideoPage.css";
 
@@ -16,71 +16,75 @@ export default function VideoPage() {
   const [activeVideo, setActiveVideo] = useState(null);
   const [openModule, setOpenModule] = useState(null);
 
-  /* FETCH VIDEOS */
+  /* ================= FETCH VIDEOS ================= */
   useEffect(() => {
     async function fetchVideos() {
-      const q = query(
-        collection(db, "videos"),
-        where("courseId", "==", courseId)
-      );
+      try {
+        const q = query(
+          collection(db, "videos"),
+          where("courseId", "==", courseId)
+        );
 
-      const snap = await getDocs(q);
-      const list = snap.docs.map((d) => ({
-        id: d.id,
-        ...d.data(),
-      }));
+        const snap = await getDocs(q);
+        const list = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-      setVideos(list);
-      if (list.length) setActiveVideo(list[0]);
+        setVideos(list);
+        if (list.length) setActiveVideo(list[0]);
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
     }
 
     fetchVideos();
   }, [courseId]);
 
-  /* GROUP BY MODULE */
+  /* ================= GROUP VIDEOS BY TOPIC ================= */
   useEffect(() => {
     const grouped = {};
 
-    videos.forEach((v) => {
-      if (!grouped[v.module]) {
-        grouped[v.module] = {
-          title: v.module,
+    videos.forEach((video) => {
+      if (!grouped[video.module]) {
+        grouped[video.module] = {
+          title: video.module,
           lessons: [],
           totalMinutes: 0,
         };
       }
 
-      grouped[v.module].lessons.push(v);
-      grouped[v.module].totalMinutes += v.duration || 0;
+      grouped[video.module].lessons.push(video);
+      grouped[video.module].totalMinutes += video.duration || 0;
     });
 
     setModules(grouped);
 
-    if (!openModule && Object.keys(grouped).length) {
+    if (!openModule && Object.keys(grouped).length > 0) {
       setOpenModule(Object.keys(grouped)[0]);
     }
-  }, [videos]);
+  }, [videos, openModule]);
 
   return (
     <div className="video-page">
-      {/* LEFT SIDE */}
+      {/* ================= LEFT SIDE ================= */}
       <div className="left">
-        {/* 🏠 HOME BUTTON */}
+        {/* 🔙 BACK TO COURSES */}
         <button
           className="back-btn"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/courses")}
         >
-          🏠 Home
+          ← Back to Courses
         </button>
 
         <VideoPlayer video={activeVideo} />
       </div>
 
-      {/* RIGHT SIDE */}
+      {/* ================= RIGHT SIDE ================= */}
       <div className="right">
         <h3 className="course-title">Course Content</h3>
 
-        {Object.keys(modules).map((moduleKey, index) => {
+        {Object.keys(modules).map((moduleKey) => {
           const module = modules[moduleKey];
           const isOpen = openModule === moduleKey;
 
@@ -89,16 +93,15 @@ export default function VideoPage() {
               key={moduleKey}
               className={`module ${isOpen ? "open" : ""}`}
             >
-              {/* MODULE HEADER */}
+              {/* TOPIC HEADER (NO MODULE NUMBER) */}
               <div
                 className="module-header"
                 onClick={() =>
                   setOpenModule(isOpen ? null : moduleKey)
                 }
               >
-                <div>
-                  <strong>Module {index + 1}</strong>
-                  <p>{module.title}</p>
+                <div className="module-title">
+                  <strong>{module.title}</strong>
                 </div>
 
                 <div className="module-meta">
@@ -110,7 +113,7 @@ export default function VideoPage() {
                 </div>
               </div>
 
-              {/* LESSONS */}
+              {/* LESSON LIST */}
               {isOpen && (
                 <div className="lesson-list">
                   {module.lessons.map((lesson) => (

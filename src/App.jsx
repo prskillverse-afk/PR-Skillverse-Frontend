@@ -79,6 +79,7 @@ function AppLayout() {
             </ProtectedRoute>
           }
         />
+        <Route path="/courses" element={<CoursesPage />} />
 
         {/* ================= ADMIN LOGIN ================= */}
         <Route path="/admin/login" element={<AdminLogin />} />

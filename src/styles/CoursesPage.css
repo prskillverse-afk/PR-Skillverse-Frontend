@@ -116,14 +116,65 @@
 }
 
 /* ===============================
-   CARD IMAGE
+   CARD IMAGE (ADVANCED)
    =============================== */
 
-.course-card img {
+.course-card-image {
+  position: relative;
   width: 100%;
   height: 300px;
+  overflow: hidden;
+}
+
+.course-card-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s ease;
+}
+
+/* Hover zoom */
+.course-card:hover .course-card-image img {
+  transform: scale(1.12);
+}
+
+/* Dark gradient overlay */
+.course-card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.45)
+  );
+}
+
+/* ===============================
+   BADGES (OPTIONAL)
+   =============================== */
+
+.course-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  z-index: 2;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.course-badge.workshop {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.course-badge.new {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
 }
 
 /* ===============================
@@ -212,7 +263,7 @@
     font-size: 14px;
   }
 
-  .course-card img {
+  .course-card-image {
     height: 220px;
   }
 

@@ -64,6 +64,7 @@ export default function AdminUpload() {
   const [module, setModule] = useState("");
   const [title, setTitle] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
+  const [description, setDescription] = useState(""); // ✅ NEW
 
   /* TRAINER */
   const [trainerType, setTrainerType] = useState("Ram");
@@ -120,11 +121,17 @@ export default function AdminUpload() {
   /* ================= UPLOAD ================= */
 
   async function handleUpload() {
-    if (!batch || !module || !title || !videoUrl) return;
+    if (!batch || !module || !title || !videoUrl || !description) {
+      alert("All fields including description are required");
+      return;
+    }
 
     const trainer =
       trainerType === "Ram" ? "Ram" : customTrainer.trim();
-    if (!trainer) return;
+    if (!trainer) {
+      alert("Trainer name required");
+      return;
+    }
 
     await addDoc(collection(db, "videos"), {
       courseId: courses[course].id,
@@ -132,20 +139,21 @@ export default function AdminUpload() {
       batch,
       module,
       title,
+      description, // ✅ STORED
       trainer,
       videoUrl: getEmbedUrl(videoUrl),
       createdAt: serverTimestamp(),
     });
 
-    /* ✅ RESET ALL INPUTS AFTER UPLOAD */
+    /* RESET */
     setBatch("");
     setModule("");
     setTitle("");
     setVideoUrl("");
+    setDescription(""); // ✅ RESET
     setTrainerType("Ram");
     setCustomTrainer("");
 
-    /* Keep module highlighted in left list */
     setActiveModule(module);
   }
 
@@ -170,7 +178,7 @@ export default function AdminUpload() {
         </select>
       </div>
 
-      {/* MODULES */}
+      {/* MODULE LIST */}
       <div className="admin-modules">
         <h3>{course}</h3>
         {Object.keys(groupedModules).map((m, i) => (
@@ -188,7 +196,7 @@ export default function AdminUpload() {
         ))}
       </div>
 
-      {/* VIDEOS */}
+      {/* VIDEO LIST */}
       <div className="admin-videos">
         <h3>{activeModule || "Select Module"}</h3>
         {groupedModules[activeModule]?.map((v) => (
@@ -204,7 +212,7 @@ export default function AdminUpload() {
         ))}
       </div>
 
-      {/* UPLOAD */}
+      {/* UPLOAD FORM */}
       <div className="admin-upload">
         <h3>Upload Video</h3>
 
@@ -225,6 +233,14 @@ export default function AdminUpload() {
           placeholder="Lesson Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+
+        {/* ✅ DESCRIPTION */}
+        <textarea
+          placeholder="Lesson Description (shown to students)"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          rows={4}
         />
 
         <select

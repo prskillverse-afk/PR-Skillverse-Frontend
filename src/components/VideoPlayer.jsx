@@ -1,44 +1,46 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./VideoPlayer.css";
 
 export default function VideoPlayer({ video }) {
-  const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("overview");
-  const [play, setPlay] = useState(false); // ✅ NEW
+  const [play, setPlay] = useState(false);
 
-  /* VALIDATE EMBED URL */
+  /* ================= VALIDATE EMBED URL ================= */
   const embedUrl = useMemo(() => {
     if (!video?.videoUrl) return null;
+
+    // Allow only YouTube embed URLs
     if (video.videoUrl.includes("youtube.com/embed/")) {
       return video.videoUrl;
     }
+
     return null;
   }, [video]);
 
-  /* NO VIDEO */
+  /* ================= NO VIDEO ================= */
   if (!video) {
     return <div className="video-placeholder">▶ Select a lesson</div>;
   }
 
-  /* INVALID URL */
+  /* ================= INVALID URL ================= */
   if (!embedUrl) {
     return (
       <div className="video-error">
-        ⚠ Invalid YouTube URL detected in database<br />
-        Please re-upload this video from Admin Panel.
+        ⚠ Invalid YouTube embed URL detected<br />
+        Please re-upload this video from Admin Panel
       </div>
     );
   }
 
+  /* ================= SECURE EMBED PARAMS ================= */
+  const secureEmbedUrl = `${embedUrl}?rel=0&modestbranding=1&controls=1&disablekb=1&fs=0&iv_load_policy=3`;
+
   return (
     <div className="video-player-container">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
-
-      {/* VIDEO AREA */}
-      <div className="video-wrapper">
+      {/* ================= VIDEO PLAYER ================= */}
+      <div
+        className="video-wrapper"
+        onContextMenu={(e) => e.preventDefault()}
+      >
         {!play ? (
           <div className="video-overlay">
             <button className="play-btn" onClick={() => setPlay(true)}>
@@ -47,57 +49,29 @@ export default function VideoPlayer({ video }) {
           </div>
         ) : (
           <iframe
-            src={`${embedUrl}?rel=0&modestbranding=1`}
+            src={secureEmbedUrl}
             title={video.title}
-            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen={false}
           />
         )}
       </div>
 
-      <h2>{video.title}</h2>
-      <p>👨‍🏫 {video.trainer || "Trainer"}</p>
+      {/* ================= VIDEO DETAILS ================= */}
+      <h2 className="video-title">{video.title}</h2>
 
-      {/* TABS */}
-      <div className="lesson-tabs">
-        <button
-          className={activeTab === "overview" ? "active" : ""}
-          onClick={() => setActiveTab("overview")}
-        >
-          Overview
-        </button>
-        <button
-          className={activeTab === "discussions" ? "active" : ""}
-          onClick={() => setActiveTab("discussions")}
-        >
-          Discussions
-        </button>
-        <button
-          className={activeTab === "reviews" ? "active" : ""}
-          onClick={() => setActiveTab("reviews")}
-        >
-          Reviews
-        </button>
-      </div>
+      <p className="trainer">
+        👨‍🏫 {video.trainer || "Trainer"}
+      </p>
 
-      <div className="lesson-content">
-        {activeTab === "overview" && (
-          <p>{video.description || "No description available."}</p>
+      {/* ================= DESCRIPTION (DIRECT) ================= */}
+      <div className="lesson-description">
+        {video.description ? (
+          <p>{video.description}</p>
+        ) : (
+          <p className="muted">No description available for this lesson.</p>
         )}
-        {activeTab !== "overview" && (
-          <p className="muted">Coming soon…</p>
-        )}
-      </div>
-
-      {/* FALLBACK */}
-      <div className="yt-fallback">
-        <a
-          href={embedUrl.replace("/embed/", "/watch?v=")}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open in YouTube
-        </a>
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ export default function VideoPage() {
     fetchVideos();
   }, [courseId]);
 
-  /* ================= GROUP VIDEOS BY TOPIC ================= */
+  /* ================= GROUP VIDEOS BY MODULE ================= */
   useEffect(() => {
     const grouped = {};
 
@@ -69,12 +69,12 @@ export default function VideoPage() {
     <div className="video-page">
       {/* ================= LEFT SIDE ================= */}
       <div className="left">
-        {/* 🔙 BACK TO COURSES */}
+        {/* 🔙 BACK TO HOME / COURSES */}
         <button
-          className="back-btn"
-          onClick={() => navigate("/courses")}
+          className="back-to-home"
+          onClick={() => navigate("/")}
         >
-          ← Back to Courses
+          ← Back to Home
         </button>
 
         <VideoPlayer video={activeVideo} />
@@ -93,7 +93,7 @@ export default function VideoPage() {
               key={moduleKey}
               className={`module ${isOpen ? "open" : ""}`}
             >
-              {/* TOPIC HEADER (NO MODULE NUMBER) */}
+              {/* MODULE HEADER */}
               <div
                 className="module-header"
                 onClick={() =>

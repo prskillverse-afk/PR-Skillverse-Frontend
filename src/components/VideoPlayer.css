@@ -1,173 +1,120 @@
-/* ================= ROOT CONTAINER ================= */
+/* =====================================================
+   VIDEO PLAYER – CLEAN LMS VERSION
+===================================================== */
+
 .video-player-container {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 16px;
+  width: 100%;
 }
 
-/* ================= VIDEO WRAPPER ================= */
+/* ================= VIDEO AREA ================= */
+
 .video-wrapper {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
+  position: relative;
 }
 
+/* iframe */
 .video-wrapper iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
 
-/* ================= PLACEHOLDER ================= */
-.video-placeholder {
-  width: 100%;
-  height: 420px;
-  background: #000;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  border-radius: 10px;
+/* Disable text selection & right-click tricks */
+.video-wrapper,
+.video-wrapper * {
+  user-select: none;
 }
 
-/* ================= VIDEO META ================= */
-.video-meta {
-  margin-top: 16px;
-}
-
-.video-meta h2 {
-  font-size: 22px;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 8px;
-}
-
-/* ================= TRAINER ROW ================= */
-.trainer-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  color: #475569;
-}
-
-.trainer-name {
-  font-weight: 500;
-}
-
-.tag {
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* ================= TABS ================= */
-.lesson-tabs {
-  display: flex;
-  gap: 24px;
-  margin-top: 20px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.lesson-tabs span {
-  padding-bottom: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  color: #64748b;
-  position: relative;
-}
-
-.lesson-tabs span:hover {
-  color: #2563eb;
-}
-
-.lesson-tabs span.active {
-  color: #2563eb;
-  font-weight: 600;
-}
-
-.lesson-tabs span.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 3px;
-  background: #2563eb;
-  border-radius: 4px;
-}
-
-/* ================= TAB CONTENT ================= */
-.lesson-content {
-  margin-top: 16px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #334155;
-}
-
-.lesson-description {
-  color: #334155;
-}
-
-.lesson-muted {
-  color: #64748b;
-  font-style: italic;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .video-meta h2 {
-    font-size: 18px;
-  }
-
-  .lesson-tabs {
-    gap: 16px;
-  }
-}
-
-
-.video-wrapper {
-  position: relative;
-  padding-top: 56.25%;
-  background: #000;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+/* ================= PLAY OVERLAY ================= */
 
 .video-overlay {
   position: absolute;
   inset: 0;
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.6);
 }
 
 .play-btn {
-  font-size: 20px;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background: #ef4444;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
   color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.yt-fallback {
-  margin-top: 10px;
+.play-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.6);
+}
+
+/* ================= TITLES ================= */
+
+.video-title {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.trainer {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.lesson-description {
+  margin-top: 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+/* ================= STATES ================= */
+
+.video-placeholder,
+.video-error {
+  background: #f1f5f9;
+  border-radius: 14px;
+  padding: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: #475569;
+}
+
+.video-error {
+  color: #b91c1c;
+}
+
+.muted {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .video-title {
+    font-size: 20px;
+  }
+
+  .lesson-description {
+    font-size: 13px;
+  }
 }

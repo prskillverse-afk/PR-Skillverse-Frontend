@@ -1,136 +1,139 @@
 /* =====================================================
-   COURSES PAGE – PR SKILLVERSE (FINAL ADVANCED)
-   ===================================================== */
+   COURSES PAGE – COMPACT & CLEAN VERSION
+===================================================== */
 
 .courses-page {
   width: 100%;
   min-height: 100vh;
-  padding: 42px 60px 80px;
+  padding: 40px 48px 80px;
   background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
-  font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
+  font-family: "Poppins", system-ui, sans-serif;
   box-sizing: border-box;
   overflow-x: hidden;
 }
 
 /* =====================================================
    HERO SECTION
-   ===================================================== */
+===================================================== */
 
 .courses-hero {
-  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  background: linear-gradient(135deg, #2563eb, #1e40af);
   color: #ffffff;
-  border-radius: 26px;
-  padding: 38px 44px;
+  border-radius: 24px;
+  padding: 34px 38px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 44px;
-  box-shadow: 0 32px 75px rgba(37, 99, 235, 0.45);
+  gap: 28px;
+  margin-bottom: 36px;
+  box-shadow: 0 22px 55px rgba(37, 99, 235, 0.4);
 }
 
 .courses-hero h2 {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   margin: 0;
-  letter-spacing: 0.5px;
 }
 
 .courses-hero p {
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0.95;
-  max-width: 600px;
-  margin-top: 12px;
+  margin-top: 8px;
+  max-width: 560px;
+  line-height: 1.6;
 }
 
 .courses-hero button {
   background: #ffffff;
-  color: #1e3a8a;
-  padding: 16px 30px;
+  color: #1e40af;
+  padding: 14px 26px;
   border-radius: 16px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
   border: none;
   cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .courses-hero button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* =====================================================
    SEARCH BAR
-   ===================================================== */
+===================================================== */
 
 .courses-search {
-  margin-bottom: 44px;
+  margin-bottom: 34px;
 }
 
 .courses-search input {
   width: 100%;
-  max-width: 480px;
-  padding: 18px 24px;
-  border-radius: 18px;
+  max-width: 440px;
+  padding: 14px 20px;
+  border-radius: 14px;
   border: 1px solid #c7d2fe;
-  font-size: 16px;
-  transition: all 0.35s ease;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.25s ease;
 }
 
 .courses-search input:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
   outline: none;
 }
 
 /* =====================================================
    COURSES GRID
-   ===================================================== */
+===================================================== */
 
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 44px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
   justify-items: center;
 }
 
 /* =====================================================
-   COURSE CARD
-   ===================================================== */
+   COURSE CARD (WIDTH REDUCED)
+===================================================== */
 
 .course-card {
   width: 100%;
-  max-width: 620px;
+  max-width: 460px; /* 🔻 REDUCED WIDTH */
   background: #ffffff;
-  border-radius: 30px;
+  border-radius: 24px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.14);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .course-card:hover {
-  transform: translateY(-18px);
-  box-shadow: 0 55px 110px rgba(37, 99, 235, 0.35);
+  transform: translateY(-12px);
+  box-shadow: 0 38px 85px rgba(37, 99, 235, 0.3);
 }
 
 /* =====================================================
-   IMAGE (FULLY VISIBLE)
-   ===================================================== */
+   IMAGE (FIXED + COMPACT)
+===================================================== */
 
 .course-card-image {
-  position: relative;
-  height: 340px;
-  background: #f1f5f9;
-  padding: 18px;
+  height: 220px; /* 🔻 REDUCED HEIGHT */
+  background: #f8fafc;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .course-card-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* FULL IMAGE VISIBLE */
-  transition: transform 0.7s ease;
+  object-fit: contain; /* FULL IMAGE – NO CROP */
+  transition: transform 0.6s ease;
 }
 
 .course-card:hover .course-card-image img {
@@ -138,86 +141,66 @@
 }
 
 /* =====================================================
-   BADGE
-   ===================================================== */
-
-.course-badge {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 800;
-  color: #ffffff;
-  background: linear-gradient(135deg, #f43f5e, #e11d48);
-  z-index: 2;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
-}
-
-.course-badge.workshop {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-}
-
-/* =====================================================
    CARD CONTENT
-   ===================================================== */
+===================================================== */
 
 .course-card-body {
-  padding: 34px 34px 40px;
+  padding: 24px 26px 30px;
 }
 
 .course-card-body h3 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
-  color: #1e293b; /* TITLE COLOR UPDATED */
+  color: #0f172a;
   margin: 0;
-  line-height: 1.25;
 }
 
 /* =====================================================
    META INFO
-   ===================================================== */
+===================================================== */
 
 .course-meta {
   display: flex;
   justify-content: space-between;
-  margin: 22px 0 32px;
-  font-size: 15px;
+  margin: 16px 0 22px;
+  font-size: 13px;
   font-weight: 600;
   color: #475569;
 }
 
 /* =====================================================
-   GET STARTED BUTTON (COLOR UPDATED)
-   ===================================================== */
+   GET STARTED BUTTON
+===================================================== */
 
 .course-card-body button {
   width: 100%;
-  padding: 18px;
-  border-radius: 18px;
+  padding: 14px;
+  border-radius: 14px;
   border: none;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 0.3px;
   color: #ffffff;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .course-card-body button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 26px 55px rgba(34, 197, 94, 0.55);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(34, 197, 94, 0.45);
+}
+
+.course-card-body button:active {
+  transform: scale(0.96);
 }
 
 /* =====================================================
    TABLET
-   ===================================================== */
+===================================================== */
 
 @media (max-width: 900px) {
   .courses-page {
-    padding: 32px 26px 60px;
+    padding: 30px 22px 60px;
   }
 
   .courses-hero {
@@ -225,33 +208,42 @@
     text-align: center;
   }
 
-  .course-card-image {
-    height: 300px;
+  .course-card {
+    max-width: 420px;
   }
 }
 
 /* =====================================================
    MOBILE
-   ===================================================== */
+===================================================== */
 
 @media (max-width: 480px) {
   .courses-page {
-    padding: 22px 14px 46px;
+    padding: 22px 14px 48px;
   }
 
   .courses-hero h2 {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .courses-hero p {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .course-card {
+    max-width: 100%;
   }
 
   .course-card-image {
-    height: 240px;
+    height: 190px;
   }
 
   .course-card-body h3 {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .course-meta {
+    flex-direction: column;
+    gap: 6px;
   }
 }

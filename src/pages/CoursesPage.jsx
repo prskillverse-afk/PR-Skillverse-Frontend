@@ -16,21 +16,18 @@ export default function CoursesPage() {
 
   /* 🔴 FETCH LIVE STATUS FROM FIRESTORE */
   useEffect(() => {
-    const unsub = onSnapshot(
-      doc(db, "liveClasses", "status"),
-      (snap) => {
-        if (snap.exists()) {
-          setLiveInfo(snap.data());
-        } else {
-          setLiveInfo({ isLive: false });
-        }
+    const unsub = onSnapshot(doc(db, "liveClasses", "status"), (snap) => {
+      if (snap.exists()) {
+        setLiveInfo(snap.data());
+      } else {
+        setLiveInfo({ isLive: false });
       }
-    );
+    });
 
     return () => unsub();
   }, []);
 
-  /* COURSES DATA WITH IMAGES */
+  /* COURSES DATA */
   const courses = [
     {
       id: "sap-s4hana-finance",
@@ -39,6 +36,7 @@ export default function CoursesPage() {
       duration: "120+ Hours",
       image:
         "https://res.cloudinary.com/dvknx0hpm/image/upload/v1766226307/ChatGPT_Image_Dec_20_2025_03_54_38_PM_tf3rvf.png",
+      accent: "blue",
     },
     {
       id: "sap-fico-workshop",
@@ -46,28 +44,28 @@ export default function CoursesPage() {
       modules: "10 Modules",
       duration: "40+ Hours",
       image:
-        "https://res.cloudinary.com/dvknx0hpm/image/upload/v1766226448/ChatGPT_Image_Dec_20_2025_03_57_00_PM_flaqqo.png",
+        "https://res.cloudinary.com/dvknx0hpm/image/upload/v1765889496/ChatGPT_Image_Dec_16_2025_06_21_19_PM_odptrs.png",
+      accent: "green",
     },
   ];
 
-  /* SEARCH FILTER */
   const filteredCourses = courses.filter((course) =>
     course.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="courses-page">
-      {/* 🔴 LIVE CLASS HERO */}
+      {/* 🔴 HERO */}
       <div className="courses-hero">
-        <div className="hero-text">
+        <div>
           <h2>
             {liveInfo.isLive
-              ? "🔴 Live Schedule is Available Now"
+              ? "🔴 Live Schedule is Available"
               : "📌 Live Schedule Not Available"}
           </h2>
           <p>
             {liveInfo.isLive
-              ? "Click below to view today's live SAP class schedule"
+              ? "Join today's live SAP session instantly"
               : "Please continue with recorded classes"}
           </p>
         </div>
@@ -92,23 +90,22 @@ export default function CoursesPage() {
         />
       </div>
 
-      {/* 📚 COURSES GRID */}
+      {/* 📚 COURSES */}
       <div className="courses-grid">
         {filteredCourses.map((course) => (
-          <div className="course-card" key={course.id}>
-            <div className="course-image">
+          <div className={`course-card accent-${course.accent}`} key={course.id}>
+            <div className="course-card-image">
               <img src={course.image} alt={course.title} />
             </div>
 
-            <div className="course-body">
+            <div className="course-card-body">
               <h3>{course.title}</h3>
-              <p>
-                {course.modules} • {course.duration}
-              </p>
+              <div className="course-meta">
+                <span>{course.modules}</span>
+                <span>{course.duration}</span>
+              </div>
 
-              <button
-                onClick={() => navigate(`/recordings/${course.id}`)}
-              >
+              <button onClick={() => navigate(`/recordings/${course.id}`)}>
                 Get Started →
               </button>
             </div>

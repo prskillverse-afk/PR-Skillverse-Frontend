@@ -9,6 +9,40 @@ export default function Testimonials() {
       </div>
 
       <div className="testimonials-grid">
+
+        {/* CARD 0 */}
+        <div className="testimonial-card">
+          <div className="student-image">
+            <img
+              src="https://res.cloudinary.com/dvknx0hpm/image/upload/v1747810024/lad_khlsmx.png"
+              alt="V Anusha Reddy"
+            />
+          </div>
+          <div className="quote-icon">❝</div>
+          <div className="testimonial-content">
+            <p>
+              "Dear Ram Sir,
+
+Thank you for conducting a very informative and well-organized SAP FI training program.
+
+The training covered all key concepts in depth, with clear explanations and practical demonstrations. connecting concepts with real-time project scenarios greatly enhanced my understanding.
+
+I am sincerely thankful for your support, interactive approach, and willingness to clarify doubts at every stage.
+
+This program has increased my confidence in working with SAP FI.
+
+Regards,
+Jeevitha G."
+            </p>
+            <div className="student-info">
+              <h4>V Anusha Reddy</h4>
+              <p>SAP FICO Consultant</p>
+              <div className="rating">★★★★★</div>
+            </div>
+          </div>
+        </div>
+
+
         {/* CARD 1 */}
         <div className="testimonial-card">
           <div className="student-image">

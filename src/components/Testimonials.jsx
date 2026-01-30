@@ -35,7 +35,7 @@ Regards,
 Jeevitha G."
             </p>
             <div className="student-info">
-              <h4>V Anusha Reddy</h4>
+              <h4> Jeevitha G.</h4>
               <p>SAP FICO Consultant</p>
               <div className="rating">★★★★★</div>
             </div>
@@ -66,7 +66,7 @@ Jeevitha G."
           </div>
         </div>
 
-        {/* CARD 2 */}
+        {/* CARD 2 
         <div className="testimonial-card">
           <div className="student-image">
             <img
@@ -87,7 +87,7 @@ Jeevitha G."
               <div className="rating">★★★★★</div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* CARD 3 */}
         <div className="testimonial-card">
